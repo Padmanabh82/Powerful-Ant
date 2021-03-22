@@ -17,12 +17,22 @@ Instructions on how to install *PowerfullAnt*
 ```bash
 sudo apt-det install git
 sudo git clone https://github.com/Padmanabh82/Powerful-Ant.git
+cd Powerful-Ant
+pip install -U -r requirements.txt
 ```
 ***Mac OS***
 ```bash
 brew install git
-git clone https://github.com/Padmanabh82/Powerful-Ant.git
+git clone https://github.com/Padmanabh82/Powrful-Ant.git
+cd Powerful-Ant
+pip install -U -r requirements.txt
 ```
 ***Windows***
 
-install .zip of folder and extract it
+install .zip of folder and extract it.PowerShell or cmd n directory.
+
+then run this command in PowerShell or cmd
+
+```bash
+pip install -U -r requirements.txt
+```

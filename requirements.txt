@@ -1,0 +1,5 @@
+python3-nmap 
+urllib
+validators
+termcolor
+socket

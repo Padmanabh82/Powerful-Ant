@@ -1,4 +1,6 @@
-import os , threading , urllib , nmap , re , validators 
+#!/usr/bin/python3
+
+import os , threading , urllib , nmap , re , validators , argparse
 from termcolor import colored
 from urllib.request import urlopen
 from socket import *
@@ -52,26 +54,42 @@ while True:
         if check_ip(ip) == 1:
             break
 
-        if validators.domain(ip) == True:
+        elif validators.domain(ip) == True:
+            ip = gethostbyname(ip)
             break
     
     except:
-        print(colored("[-] IP Addres or Dns Name is Invalid", "red"))
+        print(colored("[-] IP Addres or DNS Name is Invalid", "red"))
 
 a = 0
-nm = nmap.PortScanner()
+c = 0
 Port = 0
+nm = nmap.PortScanner()
+parser = argparse.ArgumentParser()
+args = parser.parse_args()
 t1 = threading.Thread(target= Port_Scan, args= (ip, Port), daemon=True)
 t2 = threading.Thread(target= OS_dection, args= (ip, Port), daemon=True)
-c = 0
+parser.add_argument("-FS", "--FastScan" , help="Scans Ports in Fast mode" , action="store_const" , const=1)
+parser.add_argument("-AS", "--AggrasiveScan" , help="Scans Ports in Aggrasive mode" , action="store_const" , const=1)
+parser.add_argument("-OS", "--OperatingSystemScan" , help="Scans Operating System" , action="store_const" , const=1)
 
-if validators.domain(ip) == True:
-    ip = gethostbyname(ip)
+if args.OperatingSystemScan == 1:
+    t2.start()
 
-for Port in range(0,65536):
-    if KeyboardInterrupt():
-        break
-    t1.start()
+if args.AggrasiveScan == 1:
+    for Port in range(0,65536):
+        if KeyboardInterrupt():
+            break
+        t1.start()
+
+if args.FastScan == 1:
+    minimum = int(input(colored("[!] Enter minimum Port For Scan :\n", "blue")))
+    maximum = int(input(colored("\n[!] Enter maximum Port For Scan :\n", "blue")))
+
+    for Port in range(minimum,maximum):
+        if KeyboardInterrupt():
+            break
+        t1.start()
 
 t1.join()
 

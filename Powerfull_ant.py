@@ -75,6 +75,9 @@ parser.add_argument("-OS", "--OperatingSystemScan" , help="Scans Operating Syste
 
 if args.OperatingSystemScan == 1:
     t2.start()
+    
+else:
+    a = 1
 
 if args.AggrasiveScan == 1:
     for Port in range(0,65536):

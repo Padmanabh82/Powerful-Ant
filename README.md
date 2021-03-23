@@ -3,7 +3,7 @@
 
 ### Information
 This tool is for educational purpose only tool and can be used for infomation gathereing in cyber attacks.
-Developers assume no liability and are not responsible for any misuse or damage cause by this program.
+Developers assume no liability and are not responsible for any misuse or damage cause by this program.You cannot scan for ports in any country if you are not owner of it.
 
 ### Features !
 - Can scan for IPV4 address and DNS name

@@ -15,6 +15,7 @@ def Port_Scan(ip,Port):
         port_status = (result['scan'][ip]['tcp'][Port]['state'])
         if port_status == "open" or port_status == "filtered":
             proto = (getservbyport(Port, str(proto)))
+            reason = nm[ip]['tcp'][Port]['reason']
             while a == 0:
                 pass
             else:
@@ -71,7 +72,6 @@ t1 = threading.Thread(target= Port_Scan, args= (ip, Port), daemon=True)
 t2 = threading.Thread(target= OS_dection, args= (ip, Port), daemon=True)
 parser.add_argument("-FS", "--FastScan" , help="Scans Ports in Fast mode" , action="store_const" , const=1)
 parser.add_argument("-AS", "--AggrasiveScan" , help="Scans Ports in Aggrasive mode" , action="store_const" , const=1)
-parser.add_argument("-OS", "--OperatingSystemScan" , help="Scans Operating System" , action="store_const" , const=1)
 
 t2.start()
     

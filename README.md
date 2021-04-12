@@ -38,4 +38,4 @@ pip install -U -r requirements.txt
 ```
 ### How to Use it ?
 
-use **-OS** flag for running OS scan.Use **-FS** flag for running port scan in fast mode.Use **-AS** flag for running port scan in Aggrasive mode.
+Use **-FS** flag for running port scan in fast mode.Use **-AS** flag for running port scan in Aggrasive mode.

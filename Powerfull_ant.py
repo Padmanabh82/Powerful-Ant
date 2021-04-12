@@ -14,12 +14,13 @@ def Port_Scan(ip,Port):
         result = nm.scan(ip, str(Port))
         port_status = (result['scan'][ip]['tcp'][Port]['state'])
         if port_status == "open" or port_status == "filtered":
-            port = Port
-            protocolname = ("tcp")
-            a = (getservbyport(port, protocolname))
+            proto = nm[str(ip)].hostname()
+            
+            a = (getservbyport(Port, proto))
             while a == 0:
                 pass
-            print(colored(f"[+] {Port} is {port_status} and on Running on {a} Service in Target Machine","green"))
+            else:
+                print(colored(f"[+] {Port} is {port_status} and on Running on {a} Service in Target Machine","green"))
             
             if c == 0:
                 c = 1

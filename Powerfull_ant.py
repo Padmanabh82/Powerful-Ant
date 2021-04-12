@@ -14,13 +14,11 @@ def Port_Scan(ip,Port):
         result = nm.scan(ip, str(Port))
         port_status = (result['scan'][ip]['tcp'][Port]['state'])
         if port_status == "open" or port_status == "filtered":
-            proto = nm[str(ip)].hostname()
-            
-            a = (getservbyport(Port, proto))
+            proto = (getservbyport(Port, str(proto)))
             while a == 0:
                 pass
             else:
-                print(colored(f"[+] {Port} is {port_status} and on Running on {a} Service in Target Machine","green"))
+                print(colored(f"[+] {proto} Port {Port} is {port_status} and on Running on {a} Service in Target Machine","green"))
             
             if c == 0:
                 c = 1
@@ -66,6 +64,7 @@ a = 0
 c = 0
 Port = 0
 nm = nmap.PortScanner()
+proto = nm[str(ip)].all_protocols()
 parser = argparse.ArgumentParser()
 args = parser.parse_args()
 t1 = threading.Thread(target= Port_Scan, args= (ip, Port), daemon=True)
@@ -74,8 +73,7 @@ parser.add_argument("-FS", "--FastScan" , help="Scans Ports in Fast mode" , acti
 parser.add_argument("-AS", "--AggrasiveScan" , help="Scans Ports in Aggrasive mode" , action="store_const" , const=1)
 parser.add_argument("-OS", "--OperatingSystemScan" , help="Scans Operating System" , action="store_const" , const=1)
 
-if args.OperatingSystemScan == 1:
-    t2.start()
+t2.start()
     
 else:
     a = 1
